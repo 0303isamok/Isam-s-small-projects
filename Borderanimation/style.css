@@ -1,0 +1,63 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html{
+    font-family: poppins;
+    color: #f0f0f0;
+  }
+
+body{
+    min-height: 100vh;
+    background: #0b0d15;
+    color: #a2a5b3;
+    align-content: center;
+}
+
+h1 {
+    color: white;
+}
+
+@property --angle{ 
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+.card {
+    margin: 0 auto;
+    padding: 2em;
+    width: 300px;
+    background: rgb(54, 48, 75);
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+}
+.card::after, .card::before{
+    --angle: 0deg; 
+    content: "";
+    position: absolute;
+    background-image: conic-gradient(from var(--angle), blue, purple, red, orange, yellow, green, blue);
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%; /* finn ut hvordan man kan bruke inset 0 og margin auto uten at den går en pixel mot høyre*/
+    z-index: -1;
+    padding: 3px;
+    border-radius: 10px;
+    animation: 2s spin linear infinite ;
+}
+.card::before {
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+
+@keyframes spin {
+    from{
+        --angle:0deg;
+    }
+    to{
+        --angle:360deg;
+    }
+}
